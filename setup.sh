@@ -122,5 +122,5 @@ source ~/.bashrc
 nuclei -update
 nuclei -update-templates
 
-rm setup.sh
+rm $location/setup.sh
 echo "Installation finished. Enjoy!"
