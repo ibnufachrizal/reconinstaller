@@ -95,22 +95,29 @@ git clone https://github.com/danielmiessler/SecLists.git ~/op/seclists
 echo "Installing Tools"
 
 pip3 install arjun
+pip3 install dirsearch
 git clone https://github.com/blechschmidt/massdns.git /tmp/massdns; cd /tmp/massdns; make -s; mv bin/massdns /usr/bin/massdns
-go install -v github.com/tomnomnom/anew@latest > /dev/null
 go install -v github.com/jaeles-project/gospider@latest > /dev/null
-go install -v github.com/tomnomnom/gf@latest > /dev/null
-go install -v github.com/tomnomnom/unfurl@latest > /dev/null
 go install -v github.com/tomnomnom/waybackurls@latest > /dev/null
 go install -v github.com/hakluke/hakrawler@latest > /dev/null
 go install -v github.com/lc/gau/v2/cmd/gau@latest > /dev/null
 go install -v github.com/jaeles-project/gospider@latest > /dev/null
-go install -v github.com/owasp-amass/amass/v3/...@latest > /dev/null
-go install -v github.com/ffuf/ffuf@latest > /dev/null
+go install -v github.com/owasp-amass/amass/v4/...@master > /dev/null
+go install -v github.com/ffuf/ffuf/v2@latest > /dev/null
 go install -v github.com/projectdiscovery/tlsx/cmd/tlsx@latest > /dev/null
 go install -v github.com/hahwul/dalfox/v2@latest > /dev/null
 go install -v github.com/dwisiswant0/crlfuzz/cmd/crlfuzz@latest > /dev/null
 go install -v github.com/sa7mon/s3scanner@latest > /dev/null
+go install -v github.com/six2dez/ipcdn@latest > /dev/null
 go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest > /dev/null
+go install -v github.com/tomnomnom/gf@latest > /dev/null
+go install -v github.com/tomnomnom/qsreplace@latest > /dev/null
+go install -v github.com/tomnomnom/anew@latest > /dev/null
+go install -v github.com/tomnomnom/unfurl@latest > /dev/null
+go install -v github.com/tomnomnom/hacks/inscope@latest > /dev/null
+go install -v github.com/tomnomnom/httprobe@latest > /dev/null
+go install -v github.com/tomnomnom/assetfinder@latest > /dev/null
+go install github.com/tomnomnom/meg@latest > /dev/null
 source ~/${profile_shell}/$shell
 
 # Installing All Tools ProjectDiscovery
