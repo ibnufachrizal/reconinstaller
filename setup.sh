@@ -2,6 +2,7 @@
 
 clear
 echo "by @ibnufachrizal\n"
+mkdir ~/op
 location=$(pwd)
 
 # Setup Shell
@@ -71,17 +72,15 @@ apt-get install --allow-unauthenticated -y --no-install-recommends \
     python3-netaddr \
     software-properties-common
 
-mkdir $location/op
-
 # Download Wordlists
 echo "Downloading Wordlists"
 
-git clone https://github.com/xm1k3/cent.git $location/op/cent
-git clone https://github.com/ayoubfathi/leaky-paths.git $location/op/leaky-paths
-git clone https://github.com/0xtavian/minimal-pentesting-dockerfiles.git $location/op/axiom-dockerfiles
-wget -q -O $location/op/permutations.txt https://gist.github.com/six2dez/ffc2b14d283e8f8eff6ac83e20a3c4b4/raw
-wget -q -O $location/op/resolvers.txt https://raw.githubusercontent.com/trickest/resolvers/main/resolvers.txt
-git clone https://github.com/danielmiessler/SecLists.git $location/op/seclists
+git clone https://github.com/xm1k3/cent.git ~/op/cent
+git clone https://github.com/ayoubfathi/leaky-paths.git ~/op/leaky-paths
+git clone https://github.com/0xtavian/minimal-pentesting-dockerfiles.git ~/op/axiom-dockerfiles
+wget -q -O ~/op/permutations.txt https://gist.github.com/six2dez/ffc2b14d283e8f8eff6ac83e20a3c4b4/raw
+wget -q -O ~/op/resolvers.txt https://raw.githubusercontent.com/trickest/resolvers/main/resolvers.txt
+git clone https://github.com/danielmiessler/SecLists.git ~/op/seclists
 
 
 # Download Tools packages
@@ -109,9 +108,11 @@ source ~/${profile_shell}/$shell
 # Installing All Tools ProjectDiscovery
 echo "Installing all pdtm tools..."
 pdtm -ia
+source ~/.bashrc
 
 # Update Nuclei and Nuclei-Templates
 nuclei -update
 nuclei -update-templates
 
+rm setup.sh
 echo "Installation finished. Enjoy!"
