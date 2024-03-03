@@ -10,10 +10,18 @@ banner="
 ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝    ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝"
 echo "$banner"
 echo "by @ibnufachrizal"
+
+
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+echo -e "${GREEN}[*] Bug Bounty Toolkit Installer${NC}"
+echo -e "${GREEN}[*] Setting Up Directories${NC}"
+
 mkdir ~/op
 location=$(pwd)
 
-# Setup Shell
+echo -e "${GREEN}[*] Setup Shell${NC}"
 read -n 1 -p "What shell are you using? zsh or bash? (z/b) " opt;
 
 if [[ "$opt" == *"z"* ]]; then
@@ -22,68 +30,55 @@ elif [[ "$opt" == *"b"* ]]; then
         shell=.bashrc
 fi
 
-echo "Shell is now equal to $shell"
+echo -e "${GREEN}[*] "Shell is now equal to $shell ${NC}"
 
 if [ `whoami` != root ]; then
     echo Please this script as root or using sudo
     exit
 fi
 
-#Install golang:
-
-echo "Installing/Updating Golang"
+echo -e "${GREEN}[*] Installing Golang${NC}"
 
 if [[ $(eval type go $DEBUG_ERROR | grep -o "go is") == "go is" ]]
     then
-        echo "Golang is already installed and updated"
+        echo "Golang is already installed"
     else 
         eval wget https://golang.org/dl/go1.21.3.linux-amd64.tar.gz
         eval tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz
 fi
         eval ln -sf /usr/local/go/bin/go /usr/local/bin/
     rm -rf go1.21.3.linux-amd64.tar.gz
-
-
+    
 cat << EOF >> ~/${profile_shell}/$shell 
-
-# Golang vars
+# Environment Golang
 export GOROOT=/usr/local/go
 export GOPATH=\$HOME/go
 export PATH=\$GOPATH/bin:\$GOROOT/bin:\$HOME/.local/bin:\$PATH
 EOF
 
-# Install python
-apt-get update
-apt-get install --allow-unauthenticated -y \
-    python3.10 \
-    python3-dev \
-    python3-pip \
-
-# Install essential packages
+echo -e "${GREEN}[*] Installing Essentials${NC}"
 apt-get install --allow-unauthenticated -y --no-install-recommends \
+    awscli \
     build-essential \
-    jq \
-    cmake \
-    geoip-bin \
-    geoip-database \
+    curl \
+    curl \
+    dnsutils \
     gcc \
     git \
-    libpq-dev \
-    libpango-1.0-0 \
-    libpangoft2-1.0-0 \
-    libpcap-dev \
+    inetutils-ping \
+    jq \
+    make \
+    net-tools \
     netcat \
+    nikto \
     nmap \
-    x11-utils \
-    xvfb \
+    perl \
+    python-pip \
+    python3 \
     wget \
-    curl \
-    python3-netaddr \
-    software-properties-common
+    whois
 
-# Download Wordlists
-echo "Downloading Wordlists"
-
+echo -e "${GREEN}[*] Downloading Wordlists${NC}"
 git clone https://github.com/xm1k3/cent.git ~/op/cent
 git clone https://github.com/ayoubfathi/leaky-paths.git ~/op/leaky-paths
 wget -q -O ~/op/best-dns-wordlist.txt https://wordlists-cdn.assetnote.io/data/manual/best-dns-wordlist.txt
@@ -91,9 +86,7 @@ wget -q -O ~/op/permutations.txt https://gist.github.com/six2dez/ffc2b14d283e8f8
 wget -q -O ~/op/resolvers.txt https://raw.githubusercontent.com/trickest/resolvers/main/resolvers.txt
 git clone https://github.com/danielmiessler/SecLists.git ~/op/seclists
 
-# Download Tools packages
-echo "Installing Tools"
-
+echo -e "${GREEN}[*] Installing Tools${NC}"
 pip3 install arjun
 pip3 install dirsearch
 pip3 install git-dumper
@@ -120,13 +113,17 @@ go install -v github.com/tomnomnom/assetfinder@latest > /dev/null
 go install -v github.com/tomnomnom/meg@latest > /dev/null
 source ~/${profile_shell}/$shell
 
-# Installing All Tools ProjectDiscovery
+echo -e "${GREEN}[*] Installing All Tools ProjectDiscovery${NC}"
 echo "Installing all pdtm tools..."
 pdtm -ia
 source ~/.bashrc
 
-# Update Nuclei-Templates
+echo -e "${GREEN}[*] Update Nuclei-Templates${NC}"
 nuclei -update-templates
 
+echo -e "${GREEN}[*] Clean up${NC}"
 rm $location/setup.sh
-echo "Installation finished. Enjoy!"
+apt-get clean
+
+echo -e "${GREEN}[*] Installation Complete! ${NC}"
+echo -e "${GREEN}[*] Your wordlists have been saved in: "$HOME/op${NC}"
