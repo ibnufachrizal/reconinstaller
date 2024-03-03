@@ -86,11 +86,10 @@ echo "Downloading Wordlists"
 
 git clone https://github.com/xm1k3/cent.git ~/op/cent
 git clone https://github.com/ayoubfathi/leaky-paths.git ~/op/leaky-paths
-git clone https://github.com/0xtavian/minimal-pentesting-dockerfiles.git ~/op/axiom-dockerfiles
+wget -q -O ~/op/best-dns-wordlist.txt https://wordlists-cdn.assetnote.io/data/manual/best-dns-wordlist.txt
 wget -q -O ~/op/permutations.txt https://gist.github.com/six2dez/ffc2b14d283e8f8eff6ac83e20a3c4b4/raw
 wget -q -O ~/op/resolvers.txt https://raw.githubusercontent.com/trickest/resolvers/main/resolvers.txt
 git clone https://github.com/danielmiessler/SecLists.git ~/op/seclists
-
 
 # Download Tools packages
 echo "Installing Tools"
