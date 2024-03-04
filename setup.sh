@@ -89,12 +89,12 @@ go install -v github.com/tomnomnom/unfurl@latest > /dev/null
 go install -v github.com/tomnomnom/hacks/inscope@latest > /dev/null
 go install -v github.com/tomnomnom/assetfinder@latest > /dev/null
 go install -v github.com/tomnomnom/meg@latest > /dev/null
-source ~/.zshrc
 
 echo -e "${GREEN}[*] Installing All Tools ProjectDiscovery${NC}"
 echo "Installing all pdtm tools..."
 pdtm -ia
 source ~/.bashrc
+source ~/.zshrc
 
 echo -e "${GREEN}[*] Update Nuclei-Templates${NC}"
 nuclei -update-templates
