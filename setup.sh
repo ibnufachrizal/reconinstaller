@@ -56,6 +56,7 @@ apt-get install --allow-unauthenticated -y --no-install-recommends \
     perl \
     python3-pip \
     python3 \
+    sqlmap \
     wget \
     whois
 
