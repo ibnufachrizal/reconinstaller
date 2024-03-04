@@ -14,7 +14,7 @@ echo "by @ibnufachrizal"
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-mkdir ~/op
+mkdir ~/wordlists
 location=$(pwd)
 
 if [ `whoami` != root ]; then
@@ -60,12 +60,12 @@ apt-get install --allow-unauthenticated -y --no-install-recommends \
     whois
 
 echo -e "${GREEN}[*] Downloading Wordlists${NC}"
-git clone https://github.com/xm1k3/cent.git ~/op/cent
-git clone https://github.com/ayoubfathi/leaky-paths.git ~/op/leaky-paths
-wget -q -O ~/op/best-dns-wordlist.txt https://wordlists-cdn.assetnote.io/data/manual/best-dns-wordlist.txt
-wget -q -O ~/op/permutations.txt https://gist.github.com/six2dez/ffc2b14d283e8f8eff6ac83e20a3c4b4/raw
-wget -q -O ~/op/resolvers.txt https://raw.githubusercontent.com/trickest/resolvers/main/resolvers.txt
-git clone https://github.com/danielmiessler/SecLists.git ~/op/seclists
+git clone https://github.com/xm1k3/cent.git ~/wordlists/cent
+git clone https://github.com/ayoubfathi/leaky-paths.git ~/wordlists/leaky-paths
+wget -q -O ~/wordlists/best-dns-wordlist.txt https://wordlists-cdn.assetnote.io/data/manual/best-dns-wordlist.txt
+wget -q -O ~/wordlists/permutations.txt https://gist.github.com/six2dez/ffc2b14d283e8f8eff6ac83e20a3c4b4/raw
+wget -q -O ~/wordlists/resolvers.txt https://raw.githubusercontent.com/trickest/resolvers/main/resolvers.txt
+git clone https://github.com/danielmiessler/SecLists.git ~/wordlists/seclists
 
 echo -e "${GREEN}[*] Installing Tools${NC}"
 pip3 install arjun
@@ -104,4 +104,4 @@ rm $location/setup.sh
 apt-get clean
 
 echo -e "${GREEN}[*] Installation Complete! ${NC}"
-echo -e "${GREEN}[*] Your wordlists have been saved in: "$HOME/op${NC}"
+echo -e "${GREEN}[*] Your wordlists have been saved in: "$HOME/wordlists${NC}""
