@@ -11,26 +11,11 @@ banner="
 echo "$banner"
 echo "by @ibnufachrizal"
 
-
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-echo -e "${GREEN}[*] Bug Bounty Toolkit Installer${NC}"
-echo -e "${GREEN}[*] Setting Up Directories${NC}"
-
 mkdir ~/op
 location=$(pwd)
-
-echo -e "${GREEN}[*] Setup Shell${NC}"
-read -n 1 -p "What shell are you using? zsh or bash? (z/b) " opt;
-
-if [[ "$opt" == *"z"* ]]; then
-        shell=.zshrc
-elif [[ "$opt" == *"b"* ]]; then
-        shell=.bashrc
-fi
-
-echo -e "${GREEN}[*] "Shell is now equal to $shell ${NC}"
 
 if [ `whoami` != root ]; then
     echo Please this script as root or using sudo
@@ -39,17 +24,12 @@ fi
 
 echo -e "${GREEN}[*] Installing Golang${NC}"
 
-if [[ $(eval type go $DEBUG_ERROR | grep -o "go is") == "go is" ]]
-    then
-        echo "Golang is already installed"
-    else 
-        eval wget https://golang.org/dl/go1.21.3.linux-amd64.tar.gz
-        eval tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz
-fi
-        eval ln -sf /usr/local/go/bin/go /usr/local/bin/
-    rm -rf go1.21.3.linux-amd64.tar.gz
+eval wget https://golang.org/dl/go1.21.3.linux-amd64.tar.gz
+eval tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz
+eval ln -sf /usr/local/go/bin/go /usr/local/bin/
+rm -rf go1.21.3.linux-amd64.tar.gz
     
-cat << EOF >> ~/${profile_shell}/$shell 
+cat << EOF >> ~/.zshrc
 # Environment Golang
 export GOROOT=/usr/local/go
 export GOPATH=\$HOME/go
@@ -67,13 +47,14 @@ apt-get install --allow-unauthenticated -y --no-install-recommends \
     git \
     inetutils-ping \
     jq \
+    libpcap-dev \
     make \
     net-tools \
     netcat \
     nikto \
     nmap \
     perl \
-    python-pip \
+    python3-pip \
     python3 \
     wget \
     whois
@@ -108,7 +89,7 @@ go install -v github.com/tomnomnom/unfurl@latest > /dev/null
 go install -v github.com/tomnomnom/hacks/inscope@latest > /dev/null
 go install -v github.com/tomnomnom/assetfinder@latest > /dev/null
 go install -v github.com/tomnomnom/meg@latest > /dev/null
-source ~/${profile_shell}/$shell
+source ~/.zshrc
 
 echo -e "${GREEN}[*] Installing All Tools ProjectDiscovery${NC}"
 echo "Installing all pdtm tools..."
