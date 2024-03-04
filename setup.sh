@@ -89,10 +89,8 @@ git clone https://github.com/danielmiessler/SecLists.git ~/op/seclists
 echo -e "${GREEN}[*] Installing Tools${NC}"
 pip3 install arjun
 pip3 install dirsearch
-pip3 install git-dumper
-git clone https://github.com/arthaud/git-dumper /tmp/git-dumper; cd /tmp/git-dumper; pip install -r requirements.txt
+pip install git-dumper
 git clone https://github.com/blechschmidt/massdns.git /tmp/massdns; cd /tmp/massdns; make -s; mv bin/massdns /usr/bin/massdns
-go install -v github.com/jaeles-project/gospider@latest > /dev/null
 go install -v github.com/tomnomnom/waybackurls@latest > /dev/null
 go install -v github.com/hakluke/hakrawler@latest > /dev/null
 go install -v github.com/lc/gau/v2/cmd/gau@latest > /dev/null
@@ -108,7 +106,6 @@ go install -v github.com/tomnomnom/qsreplace@latest > /dev/null
 go install -v github.com/tomnomnom/anew@latest > /dev/null
 go install -v github.com/tomnomnom/unfurl@latest > /dev/null
 go install -v github.com/tomnomnom/hacks/inscope@latest > /dev/null
-go install -v github.com/tomnomnom/httprobe@latest > /dev/null
 go install -v github.com/tomnomnom/assetfinder@latest > /dev/null
 go install -v github.com/tomnomnom/meg@latest > /dev/null
 source ~/${profile_shell}/$shell
