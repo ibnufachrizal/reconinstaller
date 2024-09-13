@@ -24,6 +24,7 @@ fi
 
 echo -e "${GREEN}[*] Installing Essentials${NC}"
 apt-get update
+apt install net-tools
 apt-get install --allow-unauthenticated -y --no-install-recommends \
     awscli \
     build-essential \
