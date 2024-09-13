@@ -23,6 +23,7 @@ if [ `whoami` != root ]; then
 fi
 
 echo -e "${GREEN}[*] Installing Essentials${NC}"
+apt-get update
 apt-get install --allow-unauthenticated -y --no-install-recommends \
     awscli \
     build-essential \
