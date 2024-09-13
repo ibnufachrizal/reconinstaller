@@ -106,9 +106,9 @@ source ~/.bashrc
 source ~/.zshrc
 
 echo -e "${GREEN}[*] Update Nuclei-Templates${NC}"
-nuclei -update-templates
 source ~/.bashrc
 source ~/.zshrc
+nuclei -update-templates
 
 echo -e "${GREEN}[*] Clean up${NC}"
 cd ..
