@@ -109,7 +109,8 @@ source ~/.bashrc
 source ~/.zshrc
 
 echo -e "${GREEN}[*] Clean up${NC}"
-rm $location/setup.sh
+cd ..
+rm -rf $location/reconinstaller
 apt-get clean
 
 echo -e "${GREEN}[*] Installation Complete! ${NC}"
