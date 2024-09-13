@@ -22,20 +22,6 @@ if [ `whoami` != root ]; then
     exit
 fi
 
-echo -e "${GREEN}[*] Installing Golang${NC}"
-
-eval wget https://golang.org/dl/go1.21.3.linux-amd64.tar.gz
-eval tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz
-eval ln -sf /usr/local/go/bin/go /usr/local/bin/
-rm -rf go1.21.3.linux-amd64.tar.gz
-    
-cat << EOF >> ~/.zshrc
-# Environment Golang
-export GOROOT=/usr/local/go
-export GOPATH=\$HOME/go
-export PATH=\$GOPATH/bin:\$GOROOT/bin:\$HOME/.local/bin:\$PATH
-EOF
-
 echo -e "${GREEN}[*] Installing Essentials${NC}"
 apt-get install --allow-unauthenticated -y --no-install-recommends \
     awscli \
@@ -59,6 +45,20 @@ apt-get install --allow-unauthenticated -y --no-install-recommends \
     sqlmap \
     wget \
     whois
+    
+echo -e "${GREEN}[*] Installing Golang${NC}"
+
+eval wget https://golang.org/dl/go1.21.3.linux-amd64.tar.gz
+eval tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz
+eval ln -sf /usr/local/go/bin/go /usr/local/bin/
+rm -rf go1.21.3.linux-amd64.tar.gz
+    
+cat << EOF >> ~/.zshrc
+# Environment Golang
+export GOROOT=/usr/local/go
+export GOPATH=\$HOME/go
+export PATH=\$GOPATH/bin:\$GOROOT/bin:\$HOME/.local/bin:\$PATH
+EOF
 
 echo -e "${GREEN}[*] Downloading Wordlists${NC}"
 git clone https://github.com/xm1k3/cent.git ~/wordlists/cent
@@ -69,9 +69,12 @@ wget -q -O ~/wordlists/resolvers.txt https://raw.githubusercontent.com/trickest/
 git clone https://github.com/danielmiessler/SecLists.git ~/wordlists/seclists
 
 echo -e "${GREEN}[*] Installing Tools${NC}"
+# Ones via PIP
 pip3 install arjun
 pip3 install dirsearch
 pip install git-dumper
+# Ones via GO install system
+export GO111MODULE=on
 git clone https://github.com/blechschmidt/massdns.git /tmp/massdns; cd /tmp/massdns; make -s; mv bin/massdns /usr/bin/massdns
 go install -v github.com/tomnomnom/waybackurls@latest > /dev/null
 go install -v github.com/hakluke/hakrawler@latest > /dev/null
