@@ -100,9 +100,13 @@ source ~/.zshrc
 echo -e "${GREEN}[*] Installing All Tools ProjectDiscovery${NC}"
 echo "Installing all pdtm tools..."
 pdtm -ia
+source ~/.bashrc
+source ~/.zshrc
 
 echo -e "${GREEN}[*] Update Nuclei-Templates${NC}"
 nuclei -update-templates
+source ~/.bashrc
+source ~/.zshrc
 
 echo -e "${GREEN}[*] Clean up${NC}"
 rm $location/setup.sh
