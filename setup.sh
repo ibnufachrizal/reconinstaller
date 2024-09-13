@@ -72,6 +72,7 @@ git clone https://github.com/danielmiessler/SecLists.git ~/wordlists/seclists
 
 echo -e "${GREEN}[*] Installing Tools${NC}"
 # Ones via PIP
+pip install sherlock-project
 pip3 install arjun
 pip3 install dirsearch
 pip install git-dumper
