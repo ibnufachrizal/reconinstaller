@@ -38,6 +38,7 @@ apt-get install --allow-unauthenticated -y --no-install-recommends \
     libpcap-dev \
     make \
     net-tools \
+    npm \
     netcat \
     nikto \
     nmap \
@@ -47,9 +48,13 @@ apt-get install --allow-unauthenticated -y --no-install-recommends \
     sqlmap \
     wget \
     whois
-    
-echo -e "${GREEN}[*] Installing Golang${NC}"
 
+echo -e "${GREEN}[*] Installing node latest${NC}"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.bashrc
+nvm install 20.5.0
+
+echo -e "${GREEN}[*] Installing Golang${NC}"
 eval wget https://golang.org/dl/go1.21.3.linux-amd64.tar.gz
 eval tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz
 eval ln -sf /usr/local/go/bin/go /usr/local/bin/
@@ -101,14 +106,12 @@ source ~/.zshrc
 
 echo -e "${GREEN}[*] Installing All Tools ProjectDiscovery${NC}"
 echo "Installing all pdtm tools..."
-pdtm -ia
 source ~/.bashrc
-source ~/.zshrc
+pdtm -ia
 
 echo -e "${GREEN}[*] Update Nuclei-Templates${NC}"
 source ~/.bashrc
-source ~/.zshrc
-nuclei -update-templates
+nuclei
 
 echo -e "${GREEN}[*] Clean up${NC}"
 cd ..
