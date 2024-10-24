@@ -101,6 +101,7 @@ go install -v github.com/tomnomnom/unfurl@latest > /dev/null
 go install -v github.com/tomnomnom/hacks/inscope@latest > /dev/null
 go install -v github.com/tomnomnom/assetfinder@latest > /dev/null
 go install -v github.com/tomnomnom/meg@latest > /dev/null
+go install -v github.com/tomnomnom/anew@latest
 source ~/.bashrc
 source ~/.zshrc
 
